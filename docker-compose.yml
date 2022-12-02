@@ -1,0 +1,53 @@
+version: "3.9"
+services:
+  binotify-app-web:
+    extends:
+      file: ../binotify-app/docker-compose.yml
+      service: web
+    networks:
+      - binotify-gggeming
+  binotify-app-db:
+    extends:
+      file: ../binotify-app/docker-compose.yml
+      service: mysql
+    networks:
+      - binotify-gggeming
+  binotify-premium-app:
+    extends:
+      file: ../binotify-premium-app/docker-compose.yml
+      service: binotify-premium-app
+    networks:
+      - binotify-gggeming
+  binotify-rest-service-server:
+    extends:
+      file: ../binotify-rest-service/docker-compose.yml
+      service: rest-api
+    networks:
+      - binotify-gggeming
+  binotify-rest-service-db:
+    extends:
+      file: ../binotify-rest-service/docker-compose.yml
+      service: postgresql
+    networks:
+      - binotify-gggeming
+  binotify-rest-service-cache:
+    extends:
+      file: ../binotify-rest-service/docker-compose.yml
+      service: redis
+    networks:
+      - binotify-gggeming
+  binotify-soap-service-soap:
+    extends:
+      file: ../binotify-soap-service/docker-compose.yml
+      service: soapservice
+    networks:
+      - binotify-gggeming
+  binotify-soap-service-db:
+    extends:
+      file: ../binotify-soap-service/docker-compose.yml
+      service: mysql-soap
+    networks:
+      - binotify-gggeming
+
+networks:
+  binotify-gggeming:
